@@ -207,19 +207,28 @@ header#top {
 }
 
 header#top select {
+  transition: box-shadow 0.2s ease-in-out;
   background-color: var(--secondary-bg);
   color: var(--secondary-fg);
   border: none;
   padding: 5px;
   width: 100%;
+  box-shadow: none;
+  outline: none;
+}
+
+header#top select:focus {
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 header#top select:nth-child(1) {
+  z-index: 2;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
 header#top select:nth-child(2) {
+  z-index: 1;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
