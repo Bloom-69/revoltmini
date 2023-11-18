@@ -323,3 +323,12 @@ section#messagebox {
 #compose.grid button#send:focus-within {
   box-shadow: 0 0 0 2px var(--accent);
 }
+
+message-renderer {
+  background-color: transparent;
+  padding: .5rem;
+}
+
+message-renderer:hover {
+  background-color: var(--secondary-bg);
+}
