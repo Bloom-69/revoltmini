@@ -50,12 +50,19 @@ class Message extends HTMLElement {
       a {
         color: var(--accent);
       }
+
+      pre {
+        box-shadow: 0 0px 0px 2px color-mix(in srgb, var(--secondary-bg) 50%, black 20%);
+        width: 50%;
+      }
+
       pre, code {
-        white-space: pre-wrap;
-        white-space: -moz-pre-wrap;
-        white-space: -pre-wrap;
-        white-space: -o-pre-wrap;
+        padding: .4rem;
+        border-radius: 5px;
+        background-color: var(--secondary-bg);
+        white-space: pre-wrap; 
         word-wrap: break-word;
+        line-height: 2;
         font-family: var(--font-mono);
       }
 
