@@ -18,10 +18,10 @@
     --bg: #f6f6f6;
     --fg: #000;
     --accent: #fd6671;
-    --primary-bg: #fff;
-    --header-bg: #f1f1f1;
-    --secondary-bg: #f1f1f1;
+    --primary-bg: #d7d7d7;
+    --secondary-bg: #d5d5d5;
     --secondary-fg: #1f1f1f;
+    --header-bg: #eaeaea;
   }
 }
 
@@ -123,11 +123,44 @@ main#login form input:not([type="checkbox"]):focus:focus-within {
   box-shadow: 0 0 0 2px var(--accent);
 }
 
+main#login form label {
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
+
+main#login form label input[type="checkbox"] {
+  transition: box-shadow .2s ease;
+  display: grid;
+  place-content: center;
+  appearance: none;
+  background-color: var(--primary-bg);
+  font: inherit;
+  color: var(--accent);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 5px;
+}
+
+main#login form label input[type="checkbox"]::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  transform: scale(0);
+  transition: .2s transform cubic-bezier(0,0,0,1);
+  border-radius: 5px;
+  box-shadow: inset 1em 1em var(--accent);
+}
+
+main#login form label input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
 dialog {
-  background-color: var(--secondary-bg);
+  background-color: var(--header-bg);
   border: none;
   border-radius: 5px;
-  color: white;
+  color: var(--fg);
 }
 
 dialog button {
@@ -169,7 +202,7 @@ dialog::backdrop {
 
 .bar {
   padding: 5px;
-  background-color: gray;
+  background-color: var(--header-bg);
 }
 
 .bar.flex {
@@ -246,9 +279,17 @@ section#middle .intro {
   align-self: center;
 }
 
+section#middle .intro button {
+  display:flex;
+  gap: .5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 section#messagebox {
   grid-area: 3 / 1 / 4 / 2;
-  background-color: var(--primary-bg);
+  background-color: var(--header-bg);
 }
 
 
@@ -266,7 +307,7 @@ section#messagebox {
 }
 
 #compose.grid #content {
-  background-color: var(--secondary-bg);
+  background-color: var(--primary-bg);
   color: var(--secondary-fg);
   padding: 0 .2rem;
   width: 100%;
@@ -309,13 +350,14 @@ section#messagebox {
 
 #compose.grid label[for="attach"],
 #compose.grid button#send {
+  transition: box-shadow 0.2s ease-in-out;
   -webkit-user-select: none;
   user-select: none;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: var(--header-bg);
+  background-color: var(--secondary-bg);
   color: var(--fg);
   box-shadow: none;
   outline: none;
@@ -340,4 +382,12 @@ message-renderer {
 
 message-renderer:hover {
   background-color: var(--secondary-bg);
+}
+
+#compose.grid button#send {
+  display:flex;
+  gap: .5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

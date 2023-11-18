@@ -6,6 +6,7 @@
     <title>RevoltMini</title>
     
     <link rel="stylesheet" href="public/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     
     <!-- Needed for basic functionality, sorry noscript/librejs users -->
     <script defer type="module" src="scripts/index.js"></script>
@@ -19,7 +20,6 @@
     <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
-
   </head>
   <body>
     <main id="login">
@@ -30,7 +30,7 @@
       <form>
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />
-        <label>
+        <label id="persistent">
           <input type="checkbox" checked></input>
           Use persistent session
         </label>
@@ -95,21 +95,21 @@
           <h1>Welcome to RevoltMini!</h1>
           <p>Use the dropdowns to navigate across servers</p>
           <p>Push notifications are available for mobile/desktop devices, but it needs your permission to enable them. Click the button below to allow RevoltMini to send notifications</p>
-          <button onclick="requestPush();">Request Notification Permission</button>
+          <button onclick="requestPush();"><material-symbols name="notifications"></material-symbols> Request Notification Permission</button>
           <p>To log out, use the button below</p>
-          <button onclick="logout();">Log out from revolt</button>
+          <button onclick="logout();"><material-symbols name="logout"></material-symbols> Log out from revolt</button>
         </div>
       </section>
       <section id="messagebox" class="bar flex stick anchor-bottom anchor-left">
         <form id="compose" class="grid">
           <input type="file" accept="*" id="attach"></input>
-          <label for="attach"><material-symbols colour="var(--fg)" icon="addPicture"/></label>
+          <label for="attach"><material-symbols name="attach_file_add"/></label>
           <textarea
             type="text"
             id="content"
             placeholder="Send message"
           ></textarea>
-          <button id="send">Send</button>
+          <button id="send">Send <material-symbols name="send"/></button>
         </form>
       </section>
     </main>
