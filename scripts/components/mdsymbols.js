@@ -1,28 +1,47 @@
-class Mdsymbols extends HTMLElement {
-    static get observedAttributes() {
-        return ['icon', 'colour'];
-    }
-    constructor() {
-        super();
-    }
+class MDSymbols extends HTMLElement {
+  static get observedAttributes() {
+    return ["name", "fill", "weight", "emphasis", "optical-size"];
+  }
 
-    connectedCallback() {
-        const shadow = this.attachShadow({ mode: 'open' });
-        const icon = this.getAttribute('icon');
-        const colour = this.getAttribute('colour');
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
 
-        this.style.fill = colour;
+  connectedCallback() {
+    const shadowDOM = this.shadowRoot;
+    const name = this.getAttribute("name");
+    if (!name) return;
 
-        switch (icon) {
-            case "addPicture":
-                shadow.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h360v80H200v560h560v-360h80v360q0 33-23.5 56.5T760-120H200Zm480-480v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80ZM240-280h480L570-480 450-320l-90-120-120 160Zm-40-480v560-560Z"/></svg>
-                `;
-                break;
-            default:
-                throw "No icon provided";
-        }
-    }
+    const fill = this.getAttribute("fill") | 0;
+    const weight = this.getAttribute("weight") | 400;
+    const emphasis = this.getAttribute("emphasis") | 0;
+    const opticalSize = this.getAttribute("optical-size") | 24;
+
+    const style = document.createElement("style");
+    const link = document.createElement("link");
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined";
+    link.rel = "stylesheet";
+
+    style.innerText = `
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' ${fill},
+        'wght' ${weight},
+        'GRAD' ${emphasis},
+        'opsz' ${opticalSize}
+      }
+    `;
+
+    const icon = document.createElement("span");
+    icon.classList.add("material-symbols-outlined");
+    icon.innerText = name;
+
+    shadowDOM.appendChild(icon);
+    shadowDOM.appendChild(style);
+    shadowDOM.appendChild(link);
+  }
 }
 
-export { Mdsymbols}
+export { MDSymbols };
