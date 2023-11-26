@@ -9,6 +9,8 @@
   --header-bg: #363636;
   --secondary-bg: #1e1e1e;
   --secondary-fg: #c8c8c8;
+  --hover-bg: #313131;
+  --placeholder-fg: #818181;
   --font-sans: "Inter", system-ui;
   --font-mono: "JetBrains Mono", monospace;
 }
@@ -21,6 +23,8 @@
     --primary-bg: #d7d7d7;
     --secondary-bg: #d5d5d5;
     --secondary-fg: #1f1f1f;
+    --hover-bg: #bbbbbb;
+    --placeholder-fg: #1f1f1f;
     --header-bg: #eaeaea;
   }
 }
@@ -42,14 +46,14 @@ body {
 main#login {
   display: flex;
   flex-direction: column;
-  margin-inline: 2rem;
+  margin-inline: 1rem;
 }
 
 main#login form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 main#login form label {
@@ -70,7 +74,7 @@ main#login section#about summary p {
 main#login form input:not([type="checkbox"]) {
   transition: box-shadow 0.2s ease-in-out;
   background-color: var(--secondary-bg);
-  color: white;
+  color: var(--fg);
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
@@ -79,7 +83,7 @@ main#login form input:not([type="checkbox"]) {
 }
 
 main#login form input:not([type="checkbox"])::placeholder {
-  color: var(--secondary-fg);
+  color: var(--placeholder-fg);
   opacity: 50%;
 }
 
@@ -175,7 +179,7 @@ dialog button {
 }
 
 dialog button:hover {
-  background-color: color-mix(in srgb, var(--secondary-bg) 50%, black 20%);
+  background-color: var(--hover-bg);
 }
 
 dialog button:focus:focus-within {
@@ -244,6 +248,7 @@ header#top select {
   background-color: var(--secondary-bg);
   color: var(--secondary-fg);
   border: none;
+  margin-top: 2px;
   padding: 5px;
   width: 100%;
   box-shadow: none;
@@ -256,14 +261,13 @@ header#top select:focus {
 
 header#top select:nth-child(1) {
   z-index: 2;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  margin-top: 0;
+  border-radius: 10px 10px 5px 5px;
 }
 
 header#top select:nth-child(2) {
   z-index: 1;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-radius: 5px 5px 10px 10px;
 }
 
 section#middle {
@@ -285,6 +289,10 @@ section#middle .intro button {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+section#middle .intro button:hover {
+  background-color: var(--hover-bg);
 }
 
 section#messagebox {
